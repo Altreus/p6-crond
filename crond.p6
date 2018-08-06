@@ -24,7 +24,13 @@ sub MAIN (Str $crontab) {
     }
 
     for @jobs -> $jobspec {
-        Chronic.every(|$jobspec<spec>).tap({ shell $jobspec<command> });
+        Chronic.every(|$jobspec<spec>).tap({
+            my $proc = shell $jobspec<command>;
+
+            CATCH {
+                warn $_;
+            }
+        });
     }
 
     Chronic.supply.wait;
