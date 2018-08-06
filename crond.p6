@@ -3,7 +3,7 @@
 use v6;
 use Chronic;
 
-sub MAIN (Str $crontab) {
+sub MAIN (Str $crontab, :$cron-d) {
     my @jobs;
 
     for $crontab.IO.lines.kv -> $i, $line is copy {
@@ -14,8 +14,10 @@ sub MAIN (Str $crontab) {
 
         next if $line ~~ / ^ <alpha>+ '=' /;
 
-        my @split = $line.split( / \s+ /, 6);
+        my @split = $line.split( / \s+ /, $cron-d ?? 7 !! 6);
         my $command = @split.pop;
+
+        @split.pop if $cron-d;
 
         # shaped variable declarations not yet implemented
         my %time;
