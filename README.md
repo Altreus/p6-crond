@@ -24,4 +24,3 @@ crons as usual, with whatever Perl 6 considers to be your shell.
 
 # TODO
 
-* Honour environment variables (modulo MAILTO - we'll always log to stdout)
