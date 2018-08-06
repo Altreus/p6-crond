@@ -11,7 +11,7 @@ Its usage is simple
 
 Crontabs that come from a `cron.d` environment will also contain a username to
 run the cron job as. You can tell the script about this, but the only effect is
-to ignore it (otherwise, the username will be usef as the command to run).
+to ignore it (otherwise, the username will be used as the command to run).
 
     perl6 crond.p6 --cron-d=1 path-to-crontab
 
