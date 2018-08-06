@@ -12,6 +12,8 @@ sub MAIN (Str $crontab) {
         $line ~~ s/ '#' .+ //;
         next unless $line ~~ / \S /;
 
+        next if $line ~~ / ^ <alpha>+ '=' /;
+
         my @split = $line.split( / \s+ /, 6);
         my $command = @split.pop;
 
